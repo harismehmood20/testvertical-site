@@ -1,4 +1,4 @@
-name: Deploy Vite Website to GitHub Pages
+name: Deploy to GitHub Pages
 
 on:
   push:
@@ -31,11 +31,11 @@ jobs:
           cache-dependency-path: testvertical-site/package-lock.json
 
       - name: Install dependencies
-        working-directory: ./testvertical-site
+        working-directory: testvertical-site
         run: npm ci
 
       - name: Build
-        working-directory: ./testvertical-site
+        working-directory: testvertical-site
         run: npm run build -- --mode github
 
       - name: Setup Pages
@@ -44,7 +44,8 @@ jobs:
       - name: Upload website
         uses: actions/upload-pages-artifact@v3
         with:
-         path: ./dist/client
+          path: ./testvertical-site/dist/client
+
   deploy:
     environment:
       name: github-pages
@@ -55,6 +56,6 @@ jobs:
     needs: build
 
     steps:
-      - name: Deploy to GitHub Pages
+      - name: Deploy
         id: deployment
         uses: actions/deploy-pages@v4
