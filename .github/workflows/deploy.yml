@@ -1,0 +1,73 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: testvertical-site/package-lock.json
+
+      - name: Install dependencies
+        working-directory: testvertical-site
+        run: npm ci
+
+      - name: Build
+        working-directory: testvertical-site
+        run: npm run build -- --mode github
+
+      - name: Check build output
+        run: |
+          echo "===== ROOT ====="
+          pwd
+          ls -la
+          echo "===== testvertical-site ====="
+          ls -la testvertical-site
+          echo "===== ALL DIST FOLDERS ====="
+          find . -maxdepth 5 -type d -name "dist" -print
+          echo "===== ALL FILES NEAR DIST ====="
+          find . -maxdepth 5 -type f | grep -E 'dist|index.html' | head -100
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload website
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./testvertical-site/dist
+
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    runs-on: ubuntu-latest
+
+    needs: build
+
+    steps:
+      - name: Deploy
+        id: deployment
+        uses: actions/deploy-pages@v4
