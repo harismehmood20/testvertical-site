@@ -38,13 +38,25 @@ jobs:
         working-directory: testvertical-site
         run: npm run build -- --mode github
 
+      - name: Check build output
+        run: |
+          echo "===== ROOT ====="
+          pwd
+          ls -la
+          echo "===== testvertical-site ====="
+          ls -la testvertical-site
+          echo "===== ALL DIST FOLDERS ====="
+          find . -maxdepth 5 -type d -name "dist" -print
+          echo "===== ALL FILES NEAR DIST ====="
+          find . -maxdepth 5 -type f | grep -E 'dist|index.html' | head -100
+
       - name: Setup Pages
         uses: actions/configure-pages@v5
 
       - name: Upload website
         uses: actions/upload-pages-artifact@v3
         with:
-          path: ./testvertical-site/dist/client
+          path: ./testvertical-site/dist
 
   deploy:
     environment:
