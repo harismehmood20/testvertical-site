@@ -7,7 +7,7 @@ import { copyFileSync } from "node:fs";
 export default defineConfig(({ mode }) => ({
   // GitHub Pages serves this project from /testvertical-site-updated_v3_added/
   // Normal builds (including Netlify) serve from the domain root.
-  base: mode === "github" ? "/testvertical-site-updated_v3_added/" : "/",
+  base: mode === "github" ? "/testvertical-site/" : "/",
   plugins: [
     react(),
     tailwindcss(),
