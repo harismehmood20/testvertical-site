@@ -8,7 +8,7 @@ export function Logo() {
   return (
     <Link className="logo" to="/" aria-label={`${site.name} home`}>
       <img
-        src="/testvertical-icon.svg"
+        src={`${import.meta.env.BASE_URL}testvertical-icon.svg`}
         alt="TestVertical"
         className="logo-mark"
       />
