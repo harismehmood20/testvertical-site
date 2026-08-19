@@ -1,6 +1,6 @@
 # TestVertical — Static Vite Website
 
-This project is a client-side React + Vite website. It does not require a server, SSR, TanStack Start, Nitro, or server functions.
+This project is a client-side React + Vite website.
 
 ## Run locally
 
