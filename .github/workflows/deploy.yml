@@ -44,8 +44,7 @@ jobs:
       - name: Upload website
         uses: actions/upload-pages-artifact@v3
         with:
-          path: ./testvertical-site/dist/client
-
+         path: ./dist/client
   deploy:
     environment:
       name: github-pages
