@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <defs>
+    <linearGradient id="tv-bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0B8FE0"/>
+      <stop offset="100%" stop-color="#087FDF"/>
+    </linearGradient>
+    <linearGradient id="tv-shield" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#FFFFFF"/>
+      <stop offset="100%" stop-color="#EAF6FC"/>
+    </linearGradient>
+  </defs>
+  <rect width="64" height="64" rx="15" fill="url(#tv-bg)"/>
+  <path
+    d="M32 9.5 L47 15v13.2c0 10.4-6.4 17.9-15 21.3-8.6-3.4-15-10.9-15-21.3V15Z"
+    fill="url(#tv-shield)"
+    stroke="#ffffff"
+    stroke-width="1.2"
+  />
+  <path
+    d="M24.5 31.5 L29.7 36.8 L40.2 24.8"
+    fill="none"
+    stroke="#087FDF"
+    stroke-width="4.2"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+  />
+  <circle cx="47" cy="17" r="4.2" fill="#29C6DB" stroke="#ffffff" stroke-width="1.4"/>
+</svg>
